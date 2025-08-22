@@ -1,0 +1,20 @@
+{
+  "name": "gyld-test",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+     "dev": "ts-node-esm src/main.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.1",
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
