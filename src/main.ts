@@ -28,11 +28,18 @@ async function main() {
   );
 
   scores.forEach((score) => {
-    const team_with_less_score = Object.values(teams_data).reduce(
-      (prev, curr) => {
-        return prev.total_score < curr.total_score ? prev : curr;
+    const sorted_teams = Object.values(teams_data).sort((a, b) => {
+      if (a.total_score === b.total_score) {
+        return a.players.length - b.players.length;
       }
-    );
+      return a.total_score - b.total_score;
+    });
+
+    const team_with_less_score = sorted_teams[0];
+
+    if (!team_with_less_score) {
+      throw new Error("No team found to assign the player.");
+    }
 
     team_with_less_score.total_score += score.score;
     team_with_less_score.players.push({
@@ -51,10 +58,12 @@ async function main() {
 
   Object.values(teams_data).forEach((team: TeamData) => {
     const total_score = Math.round(team.total_score * 100) / 100;
+    const average_score = Math.round((total_score / team.players.length) * 100) / 100;
 
     const logs = [
       `Team: ${team.team_name}`,
       `Size: ${team.players.length}`,
+      `Users Average Score: ${average_score}`,
       `Total Score: ${total_score}`,
     ]
 
