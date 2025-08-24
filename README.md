@@ -58,7 +58,11 @@ normalized performance metrics:
     1.  **lowest total score**, and  
     2.  if tied, the **fewest players**.  
 
-    👉 This tie-break rule ensures both **score balance** and **team size parity**.
+    👉 This tie-break rule prioritizes **score balance** as the main fairness criteria.  
+    In some edge cases, this may result in team sizes differing by more than 1 player,  
+    since the algorithm deliberately sacrifices strict size parity to achieve closer  
+    **total team scores**. This was a conscious tradeoff to make the shuffle feel  
+    fairer when players compare results.
 
 5.  📋 **Reporting** → At the end, the program prints a summary per team including:  
 
@@ -72,6 +76,8 @@ normalized performance metrics:
 
 ## ⚖️ Key Tradeoffs
 
+-   🏃 **Score balance over strict size balance** → The algorithm may allow  
+    team size differences >1 if needed to preserve fairness in total scores.  
 -   🏃 **Simplicity over optimization** → Used a greedy algorithm (next
     strongest → weakest team). Fair, but not always perfectly optimal.  
 -   ➕ **Single scoring method** → Used simple sum of normalized values,
